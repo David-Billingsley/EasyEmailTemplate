@@ -15,6 +15,9 @@ Parms:
     * subject - string - the subject of the email
     * bodytext - string - the text you would like passed to the body
 
+Returns:
+    String or Error
+    
 Example: 
   <!-- template.html -->
 <!DOCTYPE html>

@@ -43,7 +43,7 @@ func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 
 // #region: Send Basic Email
 // This function sends only basic templated emails using the html template provided
-func (email *Email) Email_Body_Only(sender string, password string, smtpadd string, smtpHost string, smtpPort string, templname string, recivers []string, subject string, bodytext string) {
+func (email *Email) Email_Body_Only(sender string, password string, smtpadd string, smtpHost string, smtpPort string, templname string, recivers []string, subject string, bodytext string) (string, error) {
 
 	// Receiver email address.
 	to := recivers
@@ -89,7 +89,7 @@ func (email *Email) Email_Body_Only(sender string, password string, smtpadd stri
 	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, sender, to, body.Bytes())
 	if err != nil {
 		fmt.Println(err)
-		return
+		return "", err
 	}
-
+	return "Sent Email", _
 }
