@@ -1,4 +1,5 @@
 #EasyEmail
+    To use this package put var Email EasyEmail.Email
 
 ## Email_Body_Only
     This function generates an email with body only using the email template file provided.
