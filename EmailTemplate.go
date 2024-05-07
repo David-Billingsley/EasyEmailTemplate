@@ -7,10 +7,10 @@ import (
 	"errors"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"net/smtp"
+	"os"
 )
 
 type Email struct {
@@ -128,7 +128,7 @@ func (email *Email) Email_W_Attachments(sender string, password string, smtpadd 
 		println(err)
 	}
 
-	fileBytes, err := ioutil.ReadFile(attachmentPath)
+	fileBytes, err := os.ReadFile(attachmentPath)
 	if err != nil {
 		fmt.Println("Error reading attachment:", err)
 	}
