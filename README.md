@@ -1,7 +1,8 @@
 #EasyEmail
     To use this package put var Email EasyEmail.Email
 
-    This libary is being devloped to help make it easier to send emails using go.  This libary is under devolpment if there is a send method you would like, please add it into the issue tracker.
+    This libary is being devloped to help make it easier to send emails using go.  
+    This libary is under devolpment if there is a send method you would like, please add it into the issue tracker.
 
 ## Email_Body_Only
     This function generates an email with body only using the email template file provided.
