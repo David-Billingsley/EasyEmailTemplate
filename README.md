@@ -1,4 +1,4 @@
-#EasyEmail
+# EasyEmail
     To use this package put var Email EasyEmail.Email.  
     After this is in function you can call the functions by doing Email.Email_Body_Only()
 
