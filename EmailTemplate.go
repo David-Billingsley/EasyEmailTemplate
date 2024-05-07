@@ -94,7 +94,7 @@ func (email *Email) Email_Body_Only(sender string, password string, smtpadd stri
 		fmt.Println(err)
 		return "", err
 	}
-	return "Sent Email", _
+	return "Sent Email", nil
 }
 
 // #region: Send Email W Attach
@@ -165,5 +165,5 @@ func (email *Email) Email_W_Attachments(sender string, password string, smtpadd 
 		fmt.Println(err)
 		return "", err
 	}
-	return "Sent Email", _
+	return "Sent Email", nil
 }
