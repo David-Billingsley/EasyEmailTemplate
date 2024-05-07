@@ -133,11 +133,11 @@ func (email *Email) Email_W_Attachments(sender string, password string, smtpadd 
 		fmt.Println("Error reading attachment:", err)
 	}
 
-	// Encode file to base64
+	// Encode the file to Base64
 	encoded := base64.StdEncoding.EncodeToString(fileBytes)
 	contentType := http.DetectContentType(fileBytes)
 
-	// Construct email message from the different parts
+	// Build an email from the info provided
 	message := fmt.Sprintf("From: %s\r\n", sender) +
 		fmt.Sprintf("To: %s\r\n", to) +
 		fmt.Sprintf("Subject: %s\r\n", subject) +
