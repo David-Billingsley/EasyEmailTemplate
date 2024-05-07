@@ -99,7 +99,7 @@ func (email *Email) Email_Body_Only(sender string, password string, smtpadd stri
 
 // #region: Send Email W Attach
 // This function sends emails with attchments using the text sent.
-func (email *Email) Email_W_Attachments(sender string, password string, smtpadd string, smtpHost string, smtpPort string, templname string, recivers []string, subject string, bodytext string, attachmentPath string) (string, error) {
+func (email *Email) Email_W_Attachments(sender string, password string, smtpadd string, smtpHost string, smtpPort string, recivers []string, subject string, bodytext string, attachmentPath string) (string, error) {
 
 	// Receiver email address.
 	to := recivers

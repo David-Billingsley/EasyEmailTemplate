@@ -39,7 +39,6 @@ Example:
     * SmtpAdd - string - Senders email SMTP address
     * smtpHost - string - Senders email SMTP host
     * smtpPort - string - Senders email SMTP Port
-    * templname - string - the .html template file to use for the email body.
     * recivers - []string - the list of recivers
     * subject - string - the subject of the email
     * bodytext - string - the text you would like passed to the body
