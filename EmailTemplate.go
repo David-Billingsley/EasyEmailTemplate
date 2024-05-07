@@ -3,10 +3,13 @@ package EasyEmail
 import (
 	"bytes"
 	"crypto/tls"
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net"
+	"net/http"
 	"net/smtp"
 )
 
@@ -87,6 +90,77 @@ func (email *Email) Email_Body_Only(sender string, password string, smtpadd stri
 
 	// Sending email.
 	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, sender, to, body.Bytes())
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	return "Sent Email", _
+}
+
+// #region: Send Email W Attach
+// This function sends emails with attchments using the text sent.
+func (email *Email) Email_W_Attachments(sender string, password string, smtpadd string, smtpHost string, smtpPort string, templname string, recivers []string, subject string, bodytext string, attachmentPath string) (string, error) {
+
+	// Receiver email address.
+	to := recivers
+
+	conn, err := net.Dial("tcp", smtpadd)
+	if err != nil {
+		println(err)
+	}
+
+	c, err := smtp.NewClient(conn, smtpHost)
+	if err != nil {
+		println(err)
+	}
+
+	tlsconfig := &tls.Config{
+		ServerName: smtpHost,
+	}
+
+	if err = c.StartTLS(tlsconfig); err != nil {
+		println(err)
+	}
+
+	auth := LoginAuth(sender, password)
+
+	if err = c.Auth(auth); err != nil {
+		println(err)
+	}
+
+	fileBytes, err := ioutil.ReadFile(attachmentPath)
+	if err != nil {
+		fmt.Println("Error reading attachment:", err)
+	}
+
+	// Encode file to base64
+	encoded := base64.StdEncoding.EncodeToString(fileBytes)
+	contentType := http.DetectContentType(fileBytes)
+
+	// Construct email message from the different parts
+	message := fmt.Sprintf("From: %s\r\n", sender) +
+		fmt.Sprintf("To: %s\r\n", to) +
+		fmt.Sprintf("Subject: %s\r\n", subject) +
+		"MIME-Version: 1.0\r\n" +
+		"Content-Type: multipart/mixed; boundary=EndOfSection1234\r\n" +
+		"\r\n" +
+		"--EndOfSection1234\r\n" +
+		fmt.Sprintf("Content-Type: %s; name=%s\r\n", contentType, attachmentPath) +
+		"Content-Transfer-Encoding: base64\r\n" +
+		fmt.Sprintf("Content-Disposition: attachment; filename=%s\r\n", attachmentPath) +
+		"\r\n" +
+		encoded +
+		"\r\n" +
+		"--EndOfSection1234\r\n" +
+		fmt.Sprintf("Content-Type: text/plain; charset=utf-8\r\n") +
+		"Content-Transfer-Encoding: quoted-printable\r\n" +
+		"\r\n" +
+		bodytext +
+		"\r\n" +
+		"--EndOfSection1234--\r\n"
+
+	// Sending email.
+	err = smtp.SendMail(smtpHost+":"+smtpPort, auth, sender, to, []byte(message))
 	if err != nil {
 		fmt.Println(err)
 		return "", err
