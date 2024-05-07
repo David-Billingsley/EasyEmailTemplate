@@ -24,7 +24,7 @@ Returns:
     String or Error
     
 Example: 
-  <!-- template.html -->
+<!-- template.html
 <!DOCTYPE html>
 <html>
 
@@ -33,6 +33,7 @@ Example:
 </body>
 
 </html>
+-->
 
 ## Email_W_Attachments
     Send email with an attachment
