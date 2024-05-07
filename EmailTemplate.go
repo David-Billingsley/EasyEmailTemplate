@@ -18,6 +18,7 @@ type Email struct {
 	AllowedFileTypes []string
 }
 
+// #region: Security function calls
 type loginAuth struct {
 	username, password string
 }
