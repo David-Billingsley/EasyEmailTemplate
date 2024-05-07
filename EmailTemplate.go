@@ -152,7 +152,7 @@ func (email *Email) Email_W_Attachments(sender string, password string, smtpadd 
 		encoded +
 		"\r\n" +
 		"--EndOfSection1234\r\n" +
-		fmt.Sprintf("Content-Type: text/plain; charset=utf-8\r\n") +
+		"Content-Type: text/plain; charset=utf-8\r\n" +
 		"Content-Transfer-Encoding: quoted-printable\r\n" +
 		"\r\n" +
 		bodytext +
