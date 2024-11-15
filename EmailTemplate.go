@@ -1,4 +1,4 @@
-package EasyEmail
+package github.com/David-Billingsley/EasyEmailTemplate
 
 import (
 	"bytes"
