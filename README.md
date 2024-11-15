@@ -1,5 +1,5 @@
 # EasyEmailTemplate
-    To use this package put var Email EasyEmail.Email.  
+    To use this package put var Email github.com/David-Billingsley/EasyEmailTemplate
     After this is in function you can call the functions by doing Email.Email_Body_Only()
 
     This libary is being devloped to help make it easier to send emails using go.  
